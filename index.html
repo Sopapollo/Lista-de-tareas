@@ -53,7 +53,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            left: 53%;
+            left: 55%;
             transform: translateX(140%);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
@@ -105,6 +105,11 @@
             background-color: rgb(13, 165, 13);
             color: white;
         }
+
+        .btn-delete, .btn-complete {
+            margin-left: 0px;
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -113,10 +118,9 @@
     <h1>Lista de tareas</h1> <br> <br> <br> <br> <br> <br> <br>
         </div>
 
-        <div id="Agregar-tarea-texto">
-        <h3>Agregar nueva tarea</h3>
-        </div>
- 
+    <div id="Agregar-tarea-texto">
+    <h3>Agregar nueva tarea</h3>
+    </div>
 
     <div id="lista-tareas"></div>
     <button class="btn-plus" onclick="CrearNuevaTarea()"><i class="fa fa-plus"></i></button>
