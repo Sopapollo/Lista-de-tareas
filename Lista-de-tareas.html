@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tareas para usuarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        #Titulo-texto {
+            max-height: 90px;
+            max-width: 450px;
+            justify-content: center;
+            text-align: center;
+            margin: 50px auto;
+            padding: 5px 5px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 50px;
+            background-color: rgb(217, 243, 251);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #Agregar-tarea-texto {
+            text-align: center;
+            margin-top: 0px;
+            margin-left: -80px;
+            background-color: rgb(230, 243, 248);
+            width: 200px;
+            padding: 2px 2px;
+            border-radius: 15px;
+            margin: auto;
+            justify-items: center;
+            background-color: whitesmoke;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+           
+        }
+
+        .btn-plus {
+            padding: 20px 25px;
+            cursor: pointer;
+            position: absolute;
+            border: none;
+            border-radius: 5px;
+            background-color: whitesmoke;
+            top: 205px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 53%;
+            transform: translateX(140%);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-plus:hover {
+            background-color: rgb(229, 221, 221);
+        }
+
+        #lista-tareas {
+            margin: 20px auto;
+            justify-content: center;
+            text-align: left;
+            border-radius: 15px;
+        
+            width: 50%;
+            background-color: whitesmoke;
+            max-width: 400px;
+            padding: 10px 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-delete {
+            position: absolute;
+            justify-content: center;
+            left: 62%;
+            border: none;
+            border-radius: 4px;
+            background-color: lightsalmon;
+            padding: 2px 3px;
+            cursor: pointer;
+        }
+
+        .btn-delete:hover {
+            background-color: rgb(210, 68, 40);
+            color: white;
+        }
+        .btn-complete {
+            position: absolute;
+            justify-content: center;
+            left: 60%;
+            border: none;
+            border-radius: 4px;
+            background-color: lightgreen;
+            padding: 2px 3px;
+            cursor: pointer;
+        }
+
+        .btn-complete:hover {
+            background-color: rgb(13, 165, 13);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div id="Titulo-texto">
+    <h1>Lista de tareas</h1> <br> <br> <br> <br> <br> <br> <br>
+        </div>
+
+        <div id="Agregar-tarea-texto">
+        <h3>Agregar nueva tarea</h3>
+        </div>
+ 
+
+    <div id="lista-tareas"></div>
+    <button class="btn-plus" onclick="CrearNuevaTarea()"><i class="fa fa-plus"></i></button>
+
+
+    <script>
+        let GuardarTareas = JSON.parse(localStorage.getItem("Tareas")) || [];
+
+    function CrearNuevaTarea() {
+        let nuevaTarea = prompt("Ingrese nueva tarea:");
+        if (nuevaTarea) {
+            GuardarTareas.push({texto: nuevaTarea, completada: false});
+            localStorage.setItem("Tareas", JSON.stringify(GuardarTareas));
+            MostrarTareas();
+        }
+    }
+
+    function MostrarTareas() {
+        let listaDiv =  document.getElementById("lista-tareas");
+        listaDiv.innerHTML = "";
+        GuardarTareas.forEach(function(tarea, index) {
+            listaDiv.innerHTML += `
+            <p style="text-decoration:${tarea.completada ? 'line-through' : 'none'}; color:${tarea.completada ? 'green' : 'black'}">
+                ${index + 1}. ${tarea.texto}
+            <button class= "btn-complete" onclick= "CompletarTarea(${index})">✅</button>
+            <button class="btn-delete"button onclick= "EliminarTarea(${index})">❌</button></p>`;
+            }  
+        );
+    }
+
+    
+
+    function EliminarTarea(index) {
+        GuardarTareas.splice(index, 1);
+        localStorage.setItem("Tareas", JSON.stringify(GuardarTareas));
+        MostrarTareas();
+    }
+
+    function CompletarTarea(index) {
+        GuardarTareas[index].completada = !GuardarTareas[index].completada;
+        localStorage.setItem("Tareas", JSON.stringify(GuardarTareas)); MostrarTareas();
+    }
+    
+
+    window.onload = MostrarTareas;
+
+
+   
+
+    </script>
+</body>
+</html>
