@@ -23,43 +23,41 @@
             border-radius: 15px;
             text-align: center;
             margin-top: 50px;
-            background-color: rgb(217, 243, 251);
+            background-color: rgb(236, 208, 250);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         #Agregar-tarea-texto {
             text-align: center;
-            margin-top: 0px;
             margin-left: -80px;
             background-color: rgb(230, 243, 248);
             width: 200px;
+            height: 60px;
             padding: 2px 2px;
             border-radius: 15px;
             margin: auto;
             justify-items: center;
-            background-color: whitesmoke;
+            background-color: rgb(236, 208, 250);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
            
         }
 
         .btn-plus {
+            
+            margin-left: 220px;
+            margin-top: -78px;
+            vertical-align: middle;
+            font-size: 15px;
             padding: 20px 25px;
             cursor: pointer;
-            position: absolute;
             border: none;
             border-radius: 5px;
-            background-color: whitesmoke;
-            top: 205px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            left: 55%;
-            transform: translateX(140%);
+            background-color: rgb(236, 208, 250);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         .btn-plus:hover {
-            background-color: rgb(229, 221, 221);
+            background-color: rgb(198, 166, 247);
         }
 
         #lista-tareas {
@@ -67,18 +65,17 @@
             justify-content: center;
             text-align: left;
             border-radius: 15px;
-        
-            width: 45%;
-            background-color: whitesmoke;
+            width: 50%;
+            background-color: rgb(239, 216, 251);
             max-width: 400px;
             padding: 10px 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         .btn-delete {
-            position: absolute;
+            
             justify-content: center;
-            left: 52%;
+            left: 82%;
             border: none;
             border-radius: 4px;
             background-color: lightsalmon;
@@ -91,9 +88,8 @@
             color: white;
         }
         .btn-complete {
-            position: absolute;
             justify-content: center;
-            left: 50%;
+            left: 80%;
             border: none;
             border-radius: 4px;
             background-color: lightgreen;
@@ -107,8 +103,11 @@
         }
 
         .btn-delete, .btn-complete {
-            margin-left: -5px;
-            position: relative;
+            display: inline-block;
+            margin-left: 10px;
+            padding: 5px 8px;
+            
+        
         }
     </style>
 </head>
@@ -120,11 +119,12 @@
 
     <div id="Agregar-tarea-texto">
     <h3>Agregar nueva tarea</h3>
+    <button class="btn-plus" onclick="CrearNuevaTarea()"><i class="fa fa-plus"></i></button>
+
     </div>
 
     <div id="lista-tareas"></div>
-    <button class="btn-plus" onclick="CrearNuevaTarea()"><i class="fa fa-plus"></i></button>
-
+    
 
     <script>
         let GuardarTareas = JSON.parse(localStorage.getItem("Tareas")) || [];
