@@ -106,8 +106,25 @@
             display: inline-block;
             margin-left: 10px;
             padding: 5px 8px;
-            
-        
+        }
+
+        .tarea {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .texto-tarea {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .botones {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -143,14 +160,19 @@
         listaDiv.innerHTML = "";
         GuardarTareas.forEach(function(tarea, index) {
             listaDiv.innerHTML += `
-            <p style="text-decoration:${tarea.completada ? 'line-through' : 'none'}; color:${tarea.completada ? 'green' : 'black'}">
-                ${index + 1}. ${tarea.texto}
-            <button class= "btn-complete" onclick= "CompletarTarea(${index})">✅</button>
-            <button class="btn-delete"button onclick= "EliminarTarea(${index})">❌</button></p>`;
-            }  
-        );
-    }
+          <div class="tarea">
+    <span class="texto-tarea" style="text-decoration:${tarea.completada ? 'line-through' : 'none'}; color:${tarea.completada ? 'green' : 'black'}">
+      ${index + 1}. ${tarea.texto}
+    </span>
+    <div class="botones">
+      <button class="btn-complete" onclick="CompletarTarea(${index})">✅</button>
+      <button class="btn-delete" onclick="EliminarTarea(${index})">❌</button>
+    </div>
+  </div>` ;
 
+          })
+    }
+        
     
 
     function EliminarTarea(index) {
@@ -173,4 +195,3 @@
     </script>
 </body>
 </html>
-
